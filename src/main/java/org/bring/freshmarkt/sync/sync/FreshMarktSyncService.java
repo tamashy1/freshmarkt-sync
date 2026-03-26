@@ -65,7 +65,7 @@ public class FreshMarktSyncService {
             Thread.sleep(milliseconds);
         } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
-            throw new RuntimeException("Interrupted during retry wait", ex);
+            throw new RuntimeException("Interrupted during throttle", ex);
         }
     }
 }
