@@ -13,14 +13,15 @@ import java.time.Instant;
 @Component
 @RequiredArgsConstructor
 public class FreshMarktRestClient implements FreshMarktClient{
-    private final RestClient freshMarktRestClient;
+
+    private final RestClient freshMarktHttpClient;
 
     @Override
     public ProductListResponse fetchProducts(int page, int pageSize, Instant updatedSince) {
         log.debug("Fetching products from FreshMarkt: page={}, pageSize={}, updatedSince={}",
                 page, pageSize, updatedSince);
         try {
-            return freshMarktRestClient.get()
+            return freshMarktHttpClient.get()
                     .uri(uriBuilder -> {
                         var builder = uriBuilder
                                 .path("/products")
