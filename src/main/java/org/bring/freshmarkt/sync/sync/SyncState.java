@@ -26,7 +26,7 @@ public class SyncState {
     }
 
     public SyncState(Instant lastSuccessfulSync) {
-        this.id = 1L;
+        this.id = 1L;  // singleton row — only one sync state ever exists
         this.lastSuccessfulSync = lastSuccessfulSync;
     }
 
