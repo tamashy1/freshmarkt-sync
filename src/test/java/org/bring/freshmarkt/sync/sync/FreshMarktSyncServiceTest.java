@@ -160,7 +160,9 @@ class FreshMarktSyncServiceTest {
         syncService.sync();
 
         clientStub.reset();
-        clientStub.willThrow(new HttpServerErrorException(HttpStatus.INTERNAL_SERVER_ERROR));
+        clientStub.willThrowOnCall(1, new HttpServerErrorException(HttpStatus.INTERNAL_SERVER_ERROR));
+        clientStub.willThrowOnCall(2, new HttpServerErrorException(HttpStatus.INTERNAL_SERVER_ERROR));
+        clientStub.willThrowOnCall(3, new HttpServerErrorException(HttpStatus.INTERNAL_SERVER_ERROR));
         syncService.sync();
 
         assertThat(productRepository.count()).isEqualTo(1); // existing data untouched
